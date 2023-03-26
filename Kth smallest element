@@ -1,0 +1,67 @@
+Given an array arr[] and an integer K where K is smaller than size of array, the task is to find the Kth smallest element in the given array. It is given that all array elements are distinct.
+
+Note :-  l and r denotes the starting and ending index of the array.
+
+Example 1:
+
+Input:
+N = 6
+arr[] = 7 10 4 3 20 15
+K = 3
+Output : 7
+Explanation :
+3rd smallest element in the given 
+array is 7.
+Example 2:
+
+Input:
+N = 5
+arr[] = 7 10 4 20 15
+K = 4
+Output : 15
+Explanation :
+4th smallest element in the given 
+array is 15.
+Your Task:
+You don't have to read input or print anything. Your task is to complete the function kthSmallest() which takes the array arr[], integers l and r denoting the starting and ending index of the array and an integer K as input and returns the Kth smallest element.
+ 
+ 
+Expected Time Complexity: O(n)
+Expected Auxiliary Space: O(log(n))
+Constraints:
+1 <= N <= 105
+1 <= arr[i] <= 105
+1 <= K <= N
+
+
+############################################## NOT A OPTIMAL BUT SOLUTION IN JAVA ################################################
+
+class Solution{
+    public static int kthSmallest(int[] arr, int l, int r, int k) 
+    { 
+        for (int i = 0 ;i<r-l+1;i++){
+            for (int j =i+1;j<r-l+1;j++){
+                if (arr[j]<arr[i]){
+                    int temp =arr[i];
+                    arr[i]=arr[j];
+                    arr[j]=temp;
+                }
+            }
+        }
+        int res=arr[k-1];
+        return res;
+        //Your code here
+    } 
+}
+
+// this is not accurate answer as the time complexity is high due to double for loop . So we need to sort the array in less complex way which may be solved in O(n) time . So using the 
+Arrays.sort method which sort the array in O(nlogn) time .
+
+class Solution{
+    public static int kthSmallest(int[] arr, int l, int r, int k) 
+    { 
+        Arrays.sort(arr);
+        int res=arr[k-1];
+        return res;
+    } 
+}
