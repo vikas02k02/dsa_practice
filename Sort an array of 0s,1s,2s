@@ -1,0 +1,85 @@
+Given an array of size N containing only 0s, 1s, and 2s; sort the array in ascending order.
+
+
+Example 1:
+
+Input: 
+N = 5
+arr[]= {0 2 1 2 0}
+Output:
+0 0 1 2 2
+Explanation:
+0s 1s and 2s are segregated 
+into ascending order.
+Example 2:
+
+Input: 
+N = 3
+arr[] = {0 1 0}
+Output:
+0 0 1
+Explanation:
+0s 1s and 2s are segregated 
+into ascending order.
+
+
+
+Expected Time Complexity: O(N)
+Expected Auxiliary Space: O(1)
+
+
+Constraints:
+1 <= N <= 10^6
+0 <= A[i] <= 2
+
+
+
+############################################################### OPTIMAL JAVA CODE ######################################################
+class Solution
+{
+    public static void sort012(int arr[], int n)
+    {
+        int zeros=0 ,ones=0 ,twos=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]==0){
+                zeros=zeros +1;
+            }
+            if(arr[i]==1){
+                ones=ones +1;
+            }
+            if(arr[i]==2){
+                twos=twos+1;
+            }
+        }
+        for(int i=0;i<zeros;i++){
+            arr[i]=0;
+        }
+        for(int i=zeros;i<zeros +ones;i++){
+            arr[i]=1;
+        }
+        for(int i=zeros+ones;i<zeros +ones+twos;i++){
+            arr[i]=2;
+        }
+        // code here 
+    }
+}
+
+######################################################### Another approach but more time complexity ################################################
+//User function template for Java
+
+class Solution
+{
+    public static void sort012(int arr[], int n)
+    {
+        for (int i=0; i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(arr[j]<arr[i]){
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        // code here 
+    }
+}
